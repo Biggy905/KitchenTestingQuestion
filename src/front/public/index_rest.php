@@ -17,7 +17,7 @@ use Dotenv\Dotenv;
 
 $config = ArrayHelper::merge(
     require __DIR__ . '/../../common/config/base.php',
-    require __DIR__ . '/../../front/config/main.php',
+    require __DIR__ . '/../../front/config/rest/rest.php',
 );
 
 try {
