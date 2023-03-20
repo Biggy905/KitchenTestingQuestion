@@ -18,7 +18,8 @@
         "yiisoft/validator": "~3",
         "yiisoft/yii2-queue": "^2.3",
         "yiisoft/yii2-redis": "^2.0",
-        "vlucas/phpdotenv": "^5.5@dev"
+        "vlucas/phpdotenv": "^5.5@dev",
+        "symfony/cache": "^6.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -63,7 +64,7 @@
         },
         "yii\\composer\\Installer::postInstall": {
             "generateCookieValidationKey": [
-              "admin/config/web.php"
+                "admin/config/main.php"
             ]
         }
     },
