@@ -14,4 +14,22 @@ use yii\db\ActiveQuery;
 final class UserQuery extends ActiveQuery
 {
     use SoftDeleteQueryTrait;
+
+    public function byId(int $id): ActiveQuery
+    {
+        return $this->andWhere(
+            [
+                User::tableName() . '.id' => $id,
+            ]
+        );
+    }
+
+    public function byToken(string $token): ActiveQuery
+    {
+        return $this->andWhere(
+            [
+                User::tableName() . '.token' => $token,
+            ]
+        );
+    }
 }
