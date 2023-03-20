@@ -49,6 +49,15 @@ services:
       - kit-postgres-db-data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  kit_redis:
+    container_name: kit_redis
+    image: redis:6-alpine
+    volumes:
+      - kit_redis_data:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
 networks:
   default:
     external: true
