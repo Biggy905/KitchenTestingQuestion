@@ -6,17 +6,22 @@ use common\components\form\AbstractForm;
 use Yiisoft\Validator\Rule\Required;
 use Yiisoft\Validator\Rule\StringValue;
 
-final class TokenForm extends AbstractForm
+final class AuthForm extends AbstractForm
 {
-    public string $token;
+    public string $user;
+    public string $password;
 
     public function rules(): array
     {
         return [
-            'token' => [
+            'user' => [
                 new Required(),
                 new StringValue(),
-            ]
+            ],
+            'password' => [
+                new Required(),
+                new StringValue(),
+            ],
         ];
     }
 }
