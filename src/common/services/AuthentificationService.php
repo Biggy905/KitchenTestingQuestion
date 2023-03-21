@@ -71,7 +71,7 @@ final class AuthentificationService
 
         $this->setCookie($refreshToken, $ttlRefresh);
 
-        return $accessToken;
+        return $refreshToken;
     }
 
     public function refresh(string $refreshToken): string
@@ -124,10 +124,14 @@ final class AuthentificationService
 
     private function createRefreshToken(User $user, int $ttl): string
     {
-        $token = new Token();
-        $token->token = $this->createToken($user, $ttl);
+        $newToken = $this->createToken($user, $ttl);
 
+        $token = new Token();
+        $token->token = $newToken;
         $this->tokensRepository->create($token);
+
+        $user->auth_key = $newToken;
+        $this->usersRepository->update($user);
 
         return $token->token;
     }
