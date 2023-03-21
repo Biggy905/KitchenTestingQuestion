@@ -8,6 +8,17 @@ use common\helpers\DateTimeHelpers;
 use common\queries\BookQuery;
 use yii\behaviors\TimestampBehavior;
 
+/**
+ * @property int $id
+ * @property string $title
+ * @property string $publisher
+ * @property string $publish_house
+ * @property int $count_book
+ * @property string $status
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ */
 final class Book extends Model
 {
     use SoftDeleteTrait {
