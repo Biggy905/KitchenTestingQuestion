@@ -1,27 +1,18 @@
+namespace: front\tests
 actor: Tester
-bootstrap: _bootstrap.php
+actor_suffix: Tester
+support_namespace: _support
 paths:
-    tests: tests
-    output: tests/_output
-    data: tests/_data
-    helpers: tests/_support
-settings:
-    memory_limit: 1024M
-    colors: true
-modules:
-    config:
-        Yii2:
-            configFile: 'config/test.php'
-
-# To enable code coverage:
-#coverage:
-#    #c3_url: http://localhost:8080/index-test.php/
-#    enabled: true
-#    #remote: true
-#    #remote_config: '../codeception.yml'
-#    whitelist:
-#        include:
-#            - models/*
-#            - controllers/*
-#            - commands/*
-#            - mail/*
+    tests: front/tests
+    log: front/tests/_output
+    output: front/tests/_output
+    data: front/tests/_data
+    support: front/tests/_support
+    envs: front/tests/_envs
+    helpers: front/tests/_support
+bootstrap: _bootstrap.php
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed
+coverage:
+    enabled: true
