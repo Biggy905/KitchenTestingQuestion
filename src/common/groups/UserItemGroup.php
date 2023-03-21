@@ -10,7 +10,7 @@ final class UserItemGroup
     {
         return [
             'id' => $user->id,
-            'email' => $user->email,
+            'username' => $user->username,
             'status' => $user->status,
             'created_at' => $user->created_at,
         ];
