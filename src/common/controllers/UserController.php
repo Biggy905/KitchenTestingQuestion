@@ -7,6 +7,7 @@ use common\services\AuthentificationService;
 use common\services\UserService;
 use yii\helpers\Url;
 use yii\web\Response;
+use Yii;
 
 final class UserController extends WebController
 {
@@ -29,7 +30,7 @@ final class UserController extends WebController
     {
         if($this->request->isPost) {
             $request = $this->request->getBodyParams();
-            $sign = $this->service->sign($request);
+            $sign = $this->service->signToken($request);
             if ($sign) {
                 $this->redirect(['book/list']);
             }
@@ -46,28 +47,22 @@ final class UserController extends WebController
         return $this->goHome();
     }
 
-    public function actionList(): string
-    {
-        return '';
-    }
-
     public function actionItem(int $id): string
     {
-        return '';
+        $item = $this->service->item($id);
+
+        return $this->render('item', ['item' => $item]);
     }
 
-    public function actionCreate(): string
+    public function actionList(int $page, int $limit): string
     {
-        return '';
-    }
+        $list = $this->service->list(
+            [
+                'page' => $page,
+                'limit' => $limit
+            ]
+        );
 
-    public function actionUpdate(int $id): string
-    {
-        return '';
-    }
-
-    public function actionDelete(int $id): string
-    {
-        return '';
+        return $this->render('list', $list);
     }
 }
