@@ -19,7 +19,10 @@ abstract class AbstractForm implements FormInterface
 
     public function validate(): array
     {
-        $validate = $this->validator->validate($this->getAttributes(), $this->rules());
+        $attributes = $this->getAttributes();
+        unset($attributes['validator']);
+
+        $validate = $this->validator->validate($attributes, $this->rules());
         $isValid = $validate->isValid();
         if (!$isValid) {
             return $this->getErrors($validate);
