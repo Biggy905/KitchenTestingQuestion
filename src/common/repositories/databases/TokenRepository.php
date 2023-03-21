@@ -14,6 +14,11 @@ final class TokenRepository implements TokenRepositoryInterface
         return Token::find()->byToken($refreshToken)->one();
     }
 
+    public function existsOneByToken(string $refreshToken): bool
+    {
+        return Token::find()->byToken($refreshToken)->exists();
+    }
+
     public function create(Token $token): Token
     {
         if (!$token->save()){
