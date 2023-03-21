@@ -16,11 +16,10 @@ final class M230320154642CreateTable extends Migration
             User::tableName(),
             [
                 'id' => 'pk',
-                'email' => $this->string(255)->notNull(),
+                'username' => $this->string(255)->notNull(),
                 'password_hash' => $this->string(255)->notNull(),
                 'password_reset_token' => $this->string(255)->notNull(),
-                'auth_key' => $this->string(32)->notNull(),
-                'access_token' => $this->string(128)->notNull(),
+                'auth_key' => $this->string(128)->notNull(),
                 'data' => $this->json(),
                 'status' => $this->string(64)->notNull(),
                 'logged_at' => $this->dateTime(),
@@ -30,7 +29,12 @@ final class M230320154642CreateTable extends Migration
             ]
         );
 
-        $this->addPrimaryKey(User::tableName() . '_pkey', User::tableName(), 'id');
+        $this->createIndex(
+            User::tableName() . '_username_slug',
+            User::tableName(),
+            'username',
+            true
+        );
 
         $this->createTable(
             Book::tableName(),
@@ -47,7 +51,11 @@ final class M230320154642CreateTable extends Migration
             ]
         );
 
-        $this->addPrimaryKey(Book::tableName() . '_pkey', Book::tableName(), 'id');
+        $this->createIndex(
+            Book::tableName() . '_title',
+            Book::tableName(),
+            'title'
+        );
 
         $this->createTable(
             UserToBook::tableName(),
@@ -61,8 +69,6 @@ final class M230320154642CreateTable extends Migration
             ]
         );
 
-        $this->addPrimaryKey(UserToBook::tableName() . '_pkey', UserToBook::tableName(), 'id');
-
         $this->createTable(
             Token::tableName(),
             [
@@ -73,8 +79,6 @@ final class M230320154642CreateTable extends Migration
                 'deleted_at' => $this->dateTime(),
             ]
         );
-
-        $this->addPrimaryKey(Token::tableName() . '_pkey', Token::tableName(), 'id');
     }
 
     public function safeDown(): void
