@@ -3,9 +3,10 @@
         <h1 class="text-center">
             Тестовая работа от Александра Болгова
         </h1>
-        <a href="<?= \yii\helpers\Url::to(['index/report'])?>">Посмотреть отчет</a>
+        <p class="text-center">
+            <a class="btn btn-lg bg-info text-center" href="<?= \yii\helpers\Url::to(['index/report'])?>">Посмотреть отчет</a>
+        </p>
     </div>
-    <div class="divi"
     <div class="col-12">
         <h2 class="text-center">
             Тестовое задание (перед выполнением ознакомьтесь ПОЛНОСТЬЮ)
