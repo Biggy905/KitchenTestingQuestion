@@ -24,7 +24,12 @@ BootstrapAsset::register($this);
                         <a class="nav-link" href="<?= \yii\helpers\Url::to(['index/index'])?>">Главная</a>
                     </li>
                     <li class="nav-item">
+                        <?php if(empty($_COOKIE['refresh_token'])) {?>
                         <a class="nav-link" href="<?= \yii\helpers\Url::to(['user/form-sign-in'])?>">Войти</a>
+                        <?php } else {?>
+
+                        <a class="nav-link" href="<?= \yii\helpers\Url::to(['/1/12/books'])?>">Книги</a>
+                        <?php }?>
                     </li>
                 </ul>
             </div>
