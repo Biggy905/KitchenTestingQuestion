@@ -24,11 +24,20 @@ final class UserQuery extends ActiveQuery
         );
     }
 
+    public function byUser(string $user): ActiveQuery
+    {
+        return $this->andWhere(
+            [
+                User::tableName() . '.username' => $user,
+            ]
+        );
+    }
+
     public function byToken(string $token): ActiveQuery
     {
         return $this->andWhere(
             [
-                User::tableName() . '.token' => $token,
+                User::tableName() . '.auth_key' => $token,
             ]
         );
     }
